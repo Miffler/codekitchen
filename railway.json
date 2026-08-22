@@ -1,7 +1,9 @@
 {
-  "build": { "builder": "nixpacks" },
+  "build": {
+    "builder": "nixpacks"
+  },
   "deploy": {
-    "startCommand": "npx --yes serve -l $PORT -s .",
+    "startCommand": "npx --yes serve -l $PORT .",
     "healthcheckPath": "/",
     "restartPolicyType": "on_failure",
     "restartPolicyMaxRetries": 3

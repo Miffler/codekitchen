@@ -1,1 +1,1 @@
-web: npx --yes serve -l $PORT -s .
+web: npx --yes serve -l $PORT .
