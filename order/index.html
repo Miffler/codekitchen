@@ -24,19 +24,28 @@ h1{font-size:26px;font-weight:700;margin-bottom:6px}
 h2{font-size:17px;font-weight:600;margin:26px 0 10px}
 p.sub{font-size:14px;color:var(--mut);margin-bottom:14px}
 .opt{display:block;background:var(--bg2);border:1px solid var(--line);border-radius:12px;
-  padding:16px;cursor:pointer;margin-bottom:10px;transition:border-color .15s}
+  padding:16px;cursor:pointer;margin-bottom:10px;transition:border-color .2s,box-shadow .2s,transform .15s}
+.opt:hover{border-color:var(--accent);box-shadow:0 1px 0 var(--accent)}
+.opt:active{transform:scale(.99)}
+.opt:has(input:checked){border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
 .opt:hover{border-color:var(--accent)}
 .opt input{margin-right:10px;accent-color:var(--accent)}
 .opt .t{font-weight:600;font-size:15px}
 .opt .d{font-size:13px;color:var(--mut);margin-top:4px;display:block}
 .addon{display:block;background:var(--bg2);border:1px solid var(--line);border-radius:12px;
-  padding:16px;cursor:pointer;margin-top:6px;transition:border-color .15s}
+  padding:16px;cursor:pointer;margin-top:6px;transition:border-color .2s,box-shadow .2s,transform .15s}
+.addon:hover{border-color:var(--accent);box-shadow:0 1px 0 var(--accent)}
+.addon:active{transform:scale(.99)}
+.addon:has(input:checked){border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
 .addon:hover{border-color:var(--accent)}
 .addon input{margin-right:10px;accent-color:var(--accent)}
 .addon .t{font-weight:600;font-size:15px}
 .addon .d{font-size:13px;color:var(--mut);margin-top:4px;display:block}
 .total{background:var(--bg2);border:1px dashed var(--line);border-radius:12px;
-  padding:14px 16px;margin-top:16px;font-size:14px;color:var(--mut)}
+  padding:14px 16px;margin-top:16px;font-size:14px;color:var(--mut);transition:border-color .3s}
+.total.flash{border-color:var(--accent)}
+.total b{display:inline-block;transition:transform .2s}
+.total.flash b{transform:scale(1.06)}
 .total b{color:var(--txt);font-size:18px}
 .field{margin-top:14px}
 .field label{display:block;font-size:12px;color:var(--mut);margin-bottom:6px}
@@ -125,6 +134,7 @@ function updateTotal(){
   const base=pkg==='starter'?599:999;
   const today=care?base+120:base;
   document.getElementById('totalNow').textContent='$'+today;
+  const t=document.querySelector('.total');t.classList.remove('flash');void t.offsetWidth;t.classList.add('flash');
   document.getElementById('totalSub').textContent=
     care?(' = $'+base+' site + first month care, then $120/mo')
         :(' one-time, no recurring charges');
