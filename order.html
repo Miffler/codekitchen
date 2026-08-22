@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeKitchen — Start your project</title>
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --bg:#07060d; --bg2:#0e0b1a; --card:#15102a; --card2:#1d1640;
+  --txt:#f3f0ff; --mut:#9b8fc4; --line:#2c2350; --accent:#ff8c42;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:var(--bg);color:var(--txt);line-height:1.6;min-height:100vh;
+  display:flex;align-items:flex-start;justify-content:center;padding:60px 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:32px;max-width:560px;width:100%}
+.steps{font-size:12px;color:var(--mut);margin-bottom:18px;letter-spacing:.5px}
+.steps b{color:var(--txt)}
+h1{font-size:26px;font-weight:700;margin-bottom:6px}
+.pkg{font-size:14px;color:var(--accent);font-weight:600;margin-bottom:22px}
+h2{font-size:17px;font-weight:600;margin:26px 0 10px}
+p.sub{font-size:14px;color:var(--mut);margin-bottom:14px}
+.opt{display:block;background:var(--bg2);border:1px solid var(--line);border-radius:12px;
+  padding:16px;cursor:pointer;margin-bottom:10px;transition:border-color .15s}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-right:10px;accent-color:var(--accent)}
+.opt .t{font-weight:600;font-size:15px}
+.opt .d{font-size:13px;color:var(--mut);margin-top:4px}
+.field{margin-top:14px}
+.field label{display:block;font-size:12px;color:var(--mut);margin-bottom:6px}
+.field input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;
+  color:var(--txt);padding:12px;font-size:14px;font-family:inherit}
+.field input:focus{outline:none;border-color:var(--accent)}
+.btn{padding:14px 24px;border-radius:12px;font-weight:600;font-size:15px;cursor:pointer;border:none;margin-top:22px;width:100%}
+.btn.primary{background:var(--accent);color:#07060d}
+.back{display:inline-block;margin-top:14px;font-size:13px;color:var(--mut)}
+a{color:var(--accent);text-decoration:none}
+.err{color:#ff5d6c;font-size:12px;margin-top:8px;display:none}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="steps" id="steps">Step <b>1</b> of 3</div>
+  <h1>Start your project</h1>
+  <div class="pkg" id="pkgLabel"></div>
+
+  <form id="flow" action="https://formspree.io/f/xoeablrw" method="POST">
+    <input type="hidden" name="package" id="f_pkg">
+    <input type="hidden" name="retainer" id="f_retainer">
+    <input type="hidden" name="domain" id="f_domain">
+
+    <!-- STEP 1: retainer -->
+    <div id="s1">
+      <h2>Ongoing care, after we launch</h2>
+      <p class="sub">Once your site is live, someone has to keep it updated — hosting, small edits, keeping things from breaking. You can do that yourself, or we can handle it.</p>
+      <label class="opt"><input type="radio" name="ret" value="yes" checked>
+        <span class="t">Add the Care Plan — $120/mo</span>
+        <span class="d">Hosting, monthly edits, analytics, priority replies. Cancel anytime.</span></label>
+      <label class="opt"><input type="radio" name="ret" value="no">
+        <span class="t">No thanks, I'll manage it</span>
+        <span class="d">We hand over everything — code, domain, accounts — and you take it from there.</span></label>
+    </div>
+
+    <!-- STEP 2: domain -->
+    <div id="s2" class="hidden">
+      <h2>Your domain</h2>
+      <p class="sub" id="domSub">Do you already own a domain you'd like to use?</p>
+      <label class="opt"><input type="radio" name="dom" value="existing" checked>
+        <span class="t">Yes, I have one</span>
+        <span class="d">Enter it below and we'll set everything up on it.</span></label>
+      <div class="field" id="domFieldWrap">
+        <label>Domain</label>
+        <input type="text" id="domField" placeholder="yourbusiness.com" autocomplete="off">
+      </div>
+      <label class="opt" style="margin-top:10px"><input type="radio" name="dom" value="none">
+        <span class="t">Not yet</span>
+        <span class="d">We'll help you pick and register one — usually around $12/yr, in your name.</span></label>
+    </div>
+
+    <!-- STEP 3: contact -->
+    <div id="s3" class="hidden">
+      <h2>Where should we reply?</h2>
+      <div class="field"><label>Business name</label><input name="business" required placeholder="Tony's Pizza"></div>
+      <div class="field"><label>Email</label><input type="email" name="email" required placeholder="you@email.com"></div>
+      <div class="field"><label>Anything else? (optional)</label><textarea name="note" rows="3" style="width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--txt);padding:12px;font-size:14px;font-family:inherit" placeholder="Anything we should know"></textarea></div>
+      <div class="err" id="err">Please fill in your business name and a valid email.</div>
+      <div style="font-size:13px;color:var(--mut);margin-top:14px" id="summary"></div>
+    </div>
+
+    <button class="btn primary" type="button" id="next">Continue</button>
+    <a class="back" href="/">← Back to codekitchen site</a>
+  </form>
+</div>
+<script>
+const q=new URLSearchParams(location.search);
+const pkgs={starter:['Starter — $599','1-page site, video hero, contact form, deployed live'],
+            standard:['Standard — $999','Up to 5 sections, video + motion, testimonials + pricing, custom color'],
+            care:['Care Plan — $120/mo','Hosting, monthly edits, analytics, priority replies']};
+const pkg=q.get('pkg')||'standard';
+document.getElementById('pkgLabel').textContent=pkgs[pkg]?pkgs[pkg][0]:'Standard — $999';
+document.getElementById('f_pkg').value=document.getElementById('pkgLabel').textContent;
+
+let step=1;
+const steps=[s1,s2,s3];
+function show(n){step=n;steps.forEach((el,i)=>el.classList.toggle('hidden',i!==n-1));
+  document.querySelector('#steps').innerHTML='Step <b>'+n+'</b> of 3';
+  document.getElementById('next').textContent=n===3?'Send':'Continue';}
+
+document.getElementById('next').onclick=()=>{
+  if(step===1){
+    const ret=document.querySelector('input[name=ret]:checked').value;
+    document.getElementById('f_retainer').value=ret==='yes'?'Yes — Care Plan $120/mo':'No retainer';
+    show(2);
+  } else if(step===2){
+    const dom=document.querySelector('input[name=dom]:checked').value;
+    const val=document.getElementById('domField').value.trim();
+    if(dom==='existing'&&!val){document.getElementById('domFieldWrap').querySelector('input').focus();
+      document.getElementById('domSub').textContent='Please enter your domain, or choose "Not yet".';return;}
+    document.getElementById('f_domain').value=dom==='existing'?val:'No domain yet — needs one';
+    document.getElementById('summary').textContent='Package: '+document.getElementById('pkgLabel').textContent
+      +' · Retainer: '+document.getElementById('f_retainer').value
+      +(dom==='existing'?' · Domain: '+val:' · Domain: to be decided');
+    show(3);
+  } else {
+    const f=document.getElementById('flow');
+    if(!f.business.value||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email.value)){
+      document.getElementById('err').style.display='block';return;}
+    f.submit();
+  }
+};
+show(1);
+</script>
+</body>
+</html>
