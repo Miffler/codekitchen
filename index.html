@@ -114,7 +114,7 @@ footer{text-align:center;color:var(--mut);font-size:13px;padding:40px 0;border-t
 
 <nav class="nav">
   <div class="brand">CodeKitchen</div>
-  <a class="cta" href="#contact">Get Started</a>
+  <a class="cta" href="/contact/">Get Started</a>
 </nav>
 
 <!-- HERO -->
@@ -126,7 +126,7 @@ footer{text-align:center;color:var(--mut);font-size:13px;padding:40px 0;border-t
     <h1>Websites, <span class="hl">built properly.</span></h1>
     <p>Fast, straightforward sites for small businesses. Clear pricing, no jargon, and a working draft in your inbox within a day.</p>
     <div class="acts">
-      <button class="btn primary" onclick="document.getElementById('contact').scrollIntoView()">Start Your Project</button>
+      <a class="btn primary" href="/contact/" style="display:inline-block;box-sizing:border-box">Start Your Project</a>
       <a class="btn ghost" href="#work">See What We Do</a>
     </div>
   </div>
@@ -198,16 +198,11 @@ footer{text-align:center;color:var(--mut);font-size:13px;padding:40px 0;border-t
   <div class="wrap">
     <div class="eyebrow">Let's build</div>
     <h2>Start your project</h2>
-    <p class="lead">Tell us about your business. We'll reply within a few hours with a plan and a draft link.</p>
-    <!-- Formspree form xoeablrw -->
-    <form class="contact" action="https://formspree.io/f/xoeablrw" method="POST" novalidate>
-      <label>Business name</label><input name="business" required placeholder="Tony's Pizza">
-      <label>Email</label><input type="email" name="email" required placeholder="you@email.com">
-      <label>What do you do?</label><textarea name="about" rows="3" required placeholder="Pizza restaurant in Springfield"></textarea>
-      <label>Anything else?</label><textarea name="note" rows="2" placeholder="I need a menu page and booking link"></textarea>
-      <button class="btn primary" type="submit" style="margin-top:16px;width:100%">Send</button>
-      <div class="err">Please fill in name, email, and a short description.</div>
-    </form>
+    <p class="lead">Tell us about your business. We'll reply within a few hours with a plan and a realistic quote.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px">
+      <a class="btn primary" href="/contact/" style="display:inline-block;box-sizing:border-box">Contact us</a>
+      <a class="btn ghost" href="/order/" style="display:inline-block;box-sizing:border-box">Pick a package</a>
+    </div>
   </div>
 </section>
 
@@ -225,13 +220,9 @@ if(window.gsap&&window.ScrollTrigger){gsap.registerPlugin(ScrollTrigger);
 }
 // ---- Sticky CTA on scroll ----
 const sticky=document.createElement('div');sticky.className='sticky';
-sticky.innerHTML='<span class="t">Questions? Tell us about your business.</span><button class="btn primary" onclick="document.getElementById(\'contact\').scrollIntoView()">Get in touch</button>';
+sticky.innerHTML='<span class="t">Questions? Tell us about your business.</span><a class="btn primary" href="/contact/" style="display:inline-block;box-sizing:border-box">Get in touch</a>';
 document.body.appendChild(sticky);
 window.addEventListener('scroll',()=>{sticky.classList.toggle('show',window.scrollY>600);});
-// ---- Contact validation ----
-const form=document.querySelector('form.contact');
-form.addEventListener('submit',e=>{const ok=form.business.value&&form.email.value&&form.about.value;
-  if(!ok){e.preventDefault();form.classList.add('invalid');}else{form.classList.remove('invalid');}});
 // ---- Three.js 3D accent (subtle rotating wireframe) ----
 (function(){if(!window.THREE)return;
   const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
