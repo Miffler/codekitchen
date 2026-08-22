@@ -3,15 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap">
 <title>Order — CodeKitchen</title>
 <meta name="robots" content="noindex">
 <style>
 :root{
-  --bg:#07060d; --bg2:#0e0b1a; --card:#15102a; --card2:#1d1640;
-  --txt:#f3f0ff; --mut:#9b8fc4; --line:#2c2350; --accent:#ff8c42;
+  --bg:#f7f3ec; --bg2:#fffdf9; --card:#fffdf9; --card2:#f1ebe0;
+  --txt:#1c1917; --mut:#6b6259; --line:#ddd5c9; --accent:#b4552d;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+body{font-family:'Instrument Sans',system-ui,sans-serif;
   background:var(--bg);color:var(--txt);line-height:1.6;min-height:100vh;
   display:flex;align-items:flex-start;justify-content:center;padding:60px 20px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
@@ -42,7 +44,8 @@ p.sub{font-size:14px;color:var(--mut);margin-bottom:14px}
   color:var(--txt);padding:12px;font-size:14px;font-family:inherit}
 .field input:focus{outline:none;border-color:var(--accent)}
 .btn{padding:14px 24px;border-radius:12px;font-weight:600;font-size:15px;cursor:pointer;border:none;margin-top:22px;width:100%}
-.btn.primary{background:var(--accent);color:#07060d}
+.btn.primary{background:var(--ink,#1c1917);color:var(--paper,#f7f3ec)}
+.btn.primary:hover{background:var(--accent)}
 .back{display:inline-block;margin-top:14px;font-size:13px;color:var(--mut)}
 a{color:var(--accent);text-decoration:none}
 .err{color:#ff5d6c;font-size:12px;margin-top:8px;display:none}
