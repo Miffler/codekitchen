@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CodeKitchen — Start your project</title>
+<title>Order — CodeKitchen</title>
 <meta name="robots" content="noindex">
 <style>
 :root{
@@ -19,7 +19,6 @@ body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
 .steps{font-size:12px;color:var(--mut);margin-bottom:18px;letter-spacing:.5px}
 .steps b{color:var(--txt)}
 h1{font-size:26px;font-weight:700;margin-bottom:6px}
-.pkg{font-size:14px;color:var(--accent);font-weight:600;margin-bottom:22px}
 h2{font-size:17px;font-weight:600;margin:26px 0 10px}
 p.sub{font-size:14px;color:var(--mut);margin-bottom:14px}
 .opt{display:block;background:var(--bg2);border:1px solid var(--line);border-radius:12px;
@@ -27,7 +26,16 @@ p.sub{font-size:14px;color:var(--mut);margin-bottom:14px}
 .opt:hover{border-color:var(--accent)}
 .opt input{margin-right:10px;accent-color:var(--accent)}
 .opt .t{font-weight:600;font-size:15px}
-.opt .d{font-size:13px;color:var(--mut);margin-top:4px}
+.opt .d{font-size:13px;color:var(--mut);margin-top:4px;display:block}
+.addon{display:block;background:var(--bg2);border:1px solid var(--line);border-radius:12px;
+  padding:16px;cursor:pointer;margin-top:6px;transition:border-color .15s}
+.addon:hover{border-color:var(--accent)}
+.addon input{margin-right:10px;accent-color:var(--accent)}
+.addon .t{font-weight:600;font-size:15px}
+.addon .d{font-size:13px;color:var(--mut);margin-top:4px;display:block}
+.total{background:var(--bg2);border:1px dashed var(--line);border-radius:12px;
+  padding:14px 16px;margin-top:16px;font-size:14px;color:var(--mut)}
+.total b{color:var(--txt);font-size:18px}
 .field{margin-top:14px}
 .field label{display:block;font-size:12px;color:var(--mut);margin-bottom:6px}
 .field input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;
@@ -44,30 +52,36 @@ a{color:var(--accent);text-decoration:none}
 <body>
 <div class="card">
   <div class="steps" id="steps">Step <b>1</b> of 3</div>
-  <h1>Start your project</h1>
-  <div class="pkg" id="pkgLabel"></div>
+  <h1>Your order</h1>
 
   <form id="flow" action="https://formspree.io/f/xoeablrw" method="POST">
     <input type="hidden" name="package" id="f_pkg">
     <input type="hidden" name="retainer" id="f_retainer">
     <input type="hidden" name="domain" id="f_domain">
 
-    <!-- STEP 1: retainer -->
+    <!-- STEP 1: package + care add-on -->
     <div id="s1">
-      <h2>Ongoing care, after we launch</h2>
-      <p class="sub">Once your site is live, someone has to keep it updated — hosting, small edits, keeping things from breaking. You can do that yourself, or we can handle it.</p>
-      <label class="opt"><input type="radio" name="ret" value="yes" checked>
-        <span class="t">Add the Care Plan — $120/mo</span>
+      <h2>Pick a package</h2>
+      <label class="opt"><input type="radio" name="pkg" value="starter">
+        <span class="t">Starter — $599</span>
+        <span class="d">1-page site, video hero, contact form, deployed live.</span></label>
+      <label class="opt"><input type="radio" name="pkg" value="standard" checked>
+        <span class="t">Standard — $999</span>
+        <span class="d">Up to 5 sections, video + motion, testimonials + pricing, custom color.</span></label>
+
+      <h2 style="margin-top:24px">Add ongoing care?</h2>
+      <label class="addon"><input type="checkbox" name="care" id="careBox">
+        <span class="t">Care Plan — +$120/mo</span>
         <span class="d">Hosting, monthly edits, analytics, priority replies. Cancel anytime.</span></label>
-      <label class="opt"><input type="radio" name="ret" value="no">
-        <span class="t">No thanks, I'll manage it</span>
-        <span class="d">We hand over everything — code, domain, accounts — and you take it from there.</span></label>
+      <p class="sub" style="margin-top:8px">Skip it and we hand over everything so you can manage the site yourself.</p>
+
+      <div class="total">Total today: <b id="totalNow">$999</b><span id="totalMo" class="hidden"> + $120/mo care</span></div>
     </div>
 
     <!-- STEP 2: domain -->
     <div id="s2" class="hidden">
       <h2>Your domain</h2>
-      <p class="sub" id="domSub">Do you already own a domain you'd like to use?</p>
+      <p class="sub">Do you already own a domain you'd like to use?</p>
       <label class="opt"><input type="radio" name="dom" value="existing" checked>
         <span class="t">Yes, I have one</span>
         <span class="d">Enter it below and we'll set everything up on it.</span></label>
@@ -91,38 +105,50 @@ a{color:var(--accent);text-decoration:none}
     </div>
 
     <button class="btn primary" type="button" id="next">Continue</button>
-    <a class="back" href="/">← Back to codekitchen site</a>
+    <a class="back" href="/">← Back to CodeKitchen</a>
   </form>
 </div>
 <script>
+// preselect package from URL if valid
 const q=new URLSearchParams(location.search);
-const pkgs={starter:['Starter — $599','1-page site, video hero, contact form, deployed live'],
-            standard:['Standard — $999','Up to 5 sections, video + motion, testimonials + pricing, custom color'],
-            care:['Care Plan — $120/mo','Hosting, monthly edits, analytics, priority replies']};
-const pkg=q.get('pkg')||'standard';
-document.getElementById('pkgLabel').textContent=pkgs[pkg]?pkgs[pkg][0]:'Standard — $999';
-document.getElementById('f_pkg').value=document.getElementById('pkgLabel').textContent;
+const pkgs={starter:['Starter — $599',599],standard:['Standard — $999',999]};
+const pre=q.get('pkg');
+if(pre&&pkgs[pre]){document.querySelector('input[name=pkg][value='+pre+']').checked=true;}
+
+const PKGN={starter:'Starter — $599',standard:'Standard — $999'};
+function updateTotal(){
+  const pkg=document.querySelector('input[name=pkg]:checked').value;
+  const care=document.getElementById('careBox').checked;
+  document.getElementById('totalNow').textContent='$'+(pkg==='starter'?599:999);
+  document.getElementById('totalMo').classList.toggle('hidden',!care);
+}
+document.querySelectorAll('input[name=pkg]').forEach(r=>r.addEventListener('change',updateTotal));
+document.getElementById('careBox').addEventListener('change',updateTotal);
+updateTotal();
 
 let step=1;
 const steps=[s1,s2,s3];
 function show(n){step=n;steps.forEach((el,i)=>el.classList.toggle('hidden',i!==n-1));
   document.querySelector('#steps').innerHTML='Step <b>'+n+'</b> of 3';
-  document.getElementById('next').textContent=n===3?'Send':'Continue';}
+  document.getElementById('next').textContent=n===3?'Place order':'Continue';}
 
 document.getElementById('next').onclick=()=>{
   if(step===1){
-    const ret=document.querySelector('input[name=ret]:checked').value;
-    document.getElementById('f_retainer').value=ret==='yes'?'Yes — Care Plan $120/mo':'No retainer';
+    const pkg=document.querySelector('input[name=pkg]:checked').value;
+    document.getElementById('f_pkg').value=PKGN[pkg];
+    document.getElementById('f_retainer').value=document.getElementById('careBox').checked
+      ?'Care Plan add-on: +$120/mo':'No care plan';
     show(2);
   } else if(step===2){
     const dom=document.querySelector('input[name=dom]:checked').value;
     const val=document.getElementById('domField').value.trim();
-    if(dom==='existing'&&!val){document.getElementById('domFieldWrap').querySelector('input').focus();
-      document.getElementById('domSub').textContent='Please enter your domain, or choose "Not yet".';return;}
+    if(dom==='existing'&&!val){document.getElementById('domField').focus();
+      return;}
     document.getElementById('f_domain').value=dom==='existing'?val:'No domain yet — needs one';
-    document.getElementById('summary').textContent='Package: '+document.getElementById('pkgLabel').textContent
-      +' · Retainer: '+document.getElementById('f_retainer').value
-      +(dom==='existing'?' · Domain: '+val:' · Domain: to be decided');
+    document.getElementById('summary').textContent=
+      document.getElementById('f_pkg').value+' · '
+      +document.getElementById('f_retainer').value+' · Domain: '
+      +document.getElementById('f_domain').value;
     show(3);
   } else {
     const f=document.getElementById('flow');
