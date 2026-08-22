@@ -78,7 +78,7 @@ a{color:var(--accent);text-decoration:none}
         <span class="d">Hosting, monthly edits, analytics, priority replies. Cancel anytime.</span></label>
       <p class="sub" style="margin-top:8px">Skip it and we hand over everything so you can manage the site yourself.</p>
 
-      <div class="total">Total today: <b id="totalNow">$999</b><span id="totalMo" class="hidden"> + $120/mo care</span></div>
+      <div class="total">Total today: <b id="totalNow">$999</b><span id="totalSub"></span></div>
     </div>
 
     <!-- STEP 2: domain -->
@@ -122,8 +122,12 @@ const PKGN={starter:'Starter — $599',standard:'Standard — $999'};
 function updateTotal(){
   const pkg=document.querySelector('input[name=pkg]:checked').value;
   const care=document.getElementById('careBox').checked;
-  document.getElementById('totalNow').textContent='$'+(pkg==='starter'?599:999);
-  document.getElementById('totalMo').classList.toggle('hidden',!care);
+  const base=pkg==='starter'?599:999;
+  const today=care?base+120:base;
+  document.getElementById('totalNow').textContent='$'+today;
+  document.getElementById('totalSub').textContent=
+    care?(' = $'+base+' site + first month care, then $120/mo')
+        :(' one-time, no recurring charges');
 }
 document.querySelectorAll('input[name=pkg]').forEach(r=>r.addEventListener('change',updateTotal));
 document.getElementById('careBox').addEventListener('change',updateTotal);

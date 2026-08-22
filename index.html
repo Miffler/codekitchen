@@ -66,7 +66,8 @@ header{border-bottom:1px solid var(--line)}
 .btn.primary:hover{background:var(--accent)}
 .btn.plain{color:var(--ink);border-bottom:1px solid var(--ink);border-radius:0;padding:13px 0}
 .hero figure{position:relative}
-.hero img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.hero img{width:100%;height:100%;max-height:560px;object-fit:cover;border-radius:6px;display:block;border:1px solid var(--line);aspect-ratio:16/10}
+@media(max-width:820px){.hero img{max-height:320px;aspect-ratio:16/11}}
 .hero figcaption{font-size:12.5px;color:var(--mut);margin-top:10px}
 
 /* sections — deliberately uneven rhythm */
@@ -86,7 +87,8 @@ h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:18px}
 
 /* work — honest concept pieces */
 .work{display:grid;grid-template-columns:7fr 5fr;gap:40px;align-items:start}
-.work img{width:100%;border-radius:6px;border:1px solid var(--line);display:block}
+.work img{width:100%;height:100%;max-height:480px;object-fit:cover;border-radius:6px;border:1px solid var(--line);display:block;aspect-ratio:4/3}
+@media(max-width:820px){.work img{max-height:300px;aspect-ratio:16/11}}
 .work .note{font-size:12.5px;color:var(--mut);margin-top:10px}
 .work .col p{color:var(--mut);font-size:15.5px}
 
