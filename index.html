@@ -14,17 +14,16 @@
 <!-- social cards -->
 <meta property="og:title" content="CodeKitchen — websites for small businesses">
 <meta property="og:description" content="Honest websites for small businesses. $599–$999, first draft in a day, you own everything.">
+<meta property="og:image" content="https://d8j0ntlcm91z4.cloudfront.net/user_3Hk6gzNtTNjK5eEjtWOs86dUsjd/hf_20260822_064655_689d753a-65f9-4b50-aeb3-5dfcb6e2ca61.png">
 <meta property="og:url" content="https://codekitchen.numenstack.online/">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <!-- perf -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net">
 <link rel="preload" as="image" href="https://d8j0ntlcm91z4.cloudfront.net/user_3Hk6gzNtTNjK5eEjtWOs86dUsjd/hf_20260822_064655_689d753a-65f9-4b50-aeb3-5dfcb6e2ca61.png" fetchpriority="high">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap">
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"CodeKitchen",
 "description":"Website design for small businesses","url":"https://codekitchen.numenstack.online/",
@@ -66,9 +65,6 @@ header{border-bottom:1px solid var(--line)}
 .wordmark{font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:var(--ink);text-decoration:none}
 .nav nav{display:flex;gap:26px;font-size:15px}
 .nav a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px}
-background-image:linear-gradient(currentColor,currentColor);
-  background-size:0% 1px;background-repeat:no-repeat;background-position:left bottom;
-  transition:background-size .25s ease}
 .nav a:hover,.nav a:focus-visible{background-size:100% 1px}
 
 /* hero — asymmetric 5/7 */
@@ -322,13 +318,16 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:98;opa
 // local time in footer — small, human touch
 function tick(){const c=document.getElementById('clock');if(c)c.textContent=new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})+' where you are';}
 tick();setInterval(tick,30000);
-// gentle reveals (subtle, 200ms, respects reduced-motion)
+// gentle reveals — vanilla IntersectionObserver, no library, respects reduced-motion
 window.addEventListener('DOMContentLoaded',()=>{
-  if(!window.gsap||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.utils.toArray('.step,.prow,.faq details').forEach(el=>{
-    gsap.from(el,{opacity:0,y:16,duration:.35,ease:'power1.out',
-      scrollTrigger:{trigger:el,start:'top 88%'}});});
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const els=document.querySelectorAll('.step,.prow,.faq details');
+  els.forEach(el=>{el.style.opacity='0';el.style.transform='translateY(16px)';
+    el.style.transition='opacity .35s ease,transform .35s ease'});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='none';io.unobserve(e.target)}
+  }),{rootMargin:'0px 0px -12% 0px'});
+  els.forEach(el=>io.observe(el));
 });
 </script>
 </body>
