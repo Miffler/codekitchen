@@ -10,9 +10,10 @@
 <meta name="robots" content="noindex">
 <style>
 :root{
-  --bg:#f7f3ec; --bg2:#fffdf9; --card:#fffdf9; --card2:#f1ebe0;
-  --txt:#1c1917; --mut:#6b6259; --line:#ddd5c9; --accent:#b4552d;
+  --bg:#0a0a0a; --bg2:#111110; --card:#111110; --card2:#1a1917;
+  --txt:#f4f1ea; --mut:#b3aca2; --line:#2e2b26; --accent:#c96a3b;
 }
+::selection{background:var(--accent);color:#fff}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Instrument Sans',system-ui,sans-serif;
   background:var(--bg);color:var(--txt);line-height:1.6;min-height:100vh;
@@ -54,8 +55,8 @@ p.sub{font-size:14px;color:var(--mut);margin-bottom:14px}
   color:var(--txt);padding:12px;font-size:14px;font-family:inherit}
 .field input:focus{outline:none;border-color:var(--accent)}
 .btn{padding:14px 24px;border-radius:12px;font-weight:600;font-size:15px;cursor:pointer;border:none;margin-top:22px;width:100%}
-.btn.primary{background:var(--ink,#1c1917);color:var(--paper,#f7f3ec)}
-.btn.primary:hover{background:var(--accent)}
+.btn.primary{background:#f4f1ea;color:#0a0a0a}
+.btn.primary:hover{background:var(--accent);color:#fff}
 .back{display:inline-block;margin-top:14px;font-size:13px;color:var(--mut)}
 a{color:var(--accent);text-decoration:none}
 .err{color:#ff5d6c;font-size:12px;margin-top:8px;display:none}
@@ -67,7 +68,7 @@ a{color:var(--accent);text-decoration:none}
   <div class="steps" id="steps">Step <b>1</b> of 3</div>
   <h1>Your order</h1>
 
-  <form id="flow" action="https://formspree.io/f/xoeablrw" method="POST">
+  <form id="flow" action="https://receive.numenstack.online/lead" method="POST">
     <input type="hidden" name="package" id="f_pkg">
     <input type="hidden" name="retainer" id="f_retainer">
     <input type="hidden" name="domain" id="f_domain">
