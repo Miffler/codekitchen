@@ -80,10 +80,10 @@ a{color:var(--accent);text-decoration:none}
       <h2>Pick a package</h2>
       <label class="opt"><input type="radio" name="pkg" value="starter">
         <span class="t">Starter — $599</span>
-        <span class="d">1-page site, video hero, contact form, deployed live.</span></label>
+        <span class="d">1 page, hero, contact form, 1 Stripe Payment Link, deployed live.</span></label>
       <label class="opt"><input type="radio" name="pkg" value="standard" checked>
         <span class="t">Standard — $999</span>
-        <span class="d">Up to 5 sections, video + motion, testimonials + pricing, custom color.</span></label>
+        <span class="d">Up to 5 sections, video + motion, testimonials + pricing, unlimited Stripe Payment Links.</span></label>
 
       <h2 style="margin-top:24px">Add ongoing care?</h2>
       <label class="addon"><input type="checkbox" name="care" id="careBox">
@@ -116,6 +116,8 @@ a{color:var(--accent);text-decoration:none}
       <div class="field"><label>Business name</label><input name="business" required placeholder="Tony's Pizza"></div>
       <div class="field"><label>Email</label><input type="email" name="email" required placeholder="you@email.com"></div>
       <div class="field"><label>Phone <span style="color:var(--mut);font-weight:400">(optional — we'll call to confirm)</span></label><input type="tel" name="phone" placeholder="+1 555 000 1234"></div>
+      <div class="field"><label>Stripe Payment Link(s) <span style="color:var(--mut);font-weight:400">(optional — one per line)</span></label><textarea name="payment_links" rows="3" style="width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--txt);padding:12px;font-size:14px;font-family:inherit" placeholder="https://pay.stripe.com/abc123
+https://pay.stripe.com/def456"></textarea></div>
       <div class="field"><label>Anything else? (optional)</label><textarea name="note" rows="3" style="width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--txt);padding:12px;font-size:14px;font-family:inherit" placeholder="Anything we should know"></textarea></div>
       <div class="err" id="err">Please fill in your business name and a valid email.</div>
       <div style="font-size:13px;color:var(--mut);margin-top:14px" id="summary"></div>
