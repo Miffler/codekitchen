@@ -77,11 +77,19 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.0
 
 /* nav — slim, above the fold on black */
 header{border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;background:rgba(10,10,10,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.nav{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0}
+.nav{display:flex;justify-content:space-between;align-items:baseline;padding:18px 24px}
 .wordmark{font-family:'Fraunces',serif;font-weight:600;font-size:21px;color:var(--paper)}
 .nav nav{display:flex;gap:26px;font-size:15px}
 .nav a{color:var(--paper)}
 .nav a:hover,.nav a:focus-visible{background-size:100% 1px}
+@media(max-width:600px){
+  .wordmark{font-size:19px}
+  .nav nav{gap:12px;font-size:13.5px}
+}
+@media(max-width:360px){
+  .wordmark{font-size:18px}
+  .nav nav{gap:10px;font-size:13px}
+}
 
 /* hero — asymmetric 5/7, billboard type */
 .hero{display:grid;grid-template-columns:5fr 7fr;gap:48px;padding:92px 0 96px;align-items:center}
@@ -186,7 +194,6 @@ footer a{color:var(--paper)}
   .work{grid-template-columns:1fr}
   .prow{grid-template-columns:1fr;gap:8px}
   .prow .p{text-align:left}
-  .nav nav{gap:16px;font-size:14px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 /* texture: film grain + custom selection */
