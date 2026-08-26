@@ -6,7 +6,7 @@
 <title>CodeKitchen — websites for small businesses</title>
 <meta name="description" content="Honest websites for small businesses. $599–$999, working draft before you pay a cent, you own everything.">
 <link rel="canonical" href="https://codekitchen.numenstack.online/">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#000000">
 <style>@view-transition{navigation:auto}</style>
 <!-- favicon -->
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -39,7 +39,7 @@
 </script>
 <style>
 :root{
-  --ink:#0a0a0a; --paper:#f4f1ea; --mut:#b3aca2; --line:#2e2b26;
+  --ink:#000000; --paper:#ffffff; --mut:#9a9a9a; --line:#262626;
   --accent:#c96a3b; /* rust — the one warm thing on the board */
   --up:#4fae6e; --down:#c8574f;
 }
@@ -60,9 +60,9 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.0
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
 /* ── ticker — the Times Square band ─────────────────────────── */
-.ticker{border-bottom:1px solid var(--line);overflow:hidden;background:#050505;position:relative}
+.ticker{border-bottom:1px solid var(--line);overflow:hidden;background:#000;position:relative}
 .ticker .label{position:absolute;left:0;top:0;bottom:0;z-index:2;display:flex;align-items:center;
-  padding:0 14px 0 24px;background:#050505;border-right:1px solid var(--line);
+  padding:0 14px 0 24px;background:#000;border-right:1px solid var(--line);
   font-size:11px;font-weight:600;letter-spacing:.22em;color:var(--accent);text-transform:uppercase}
 .ticker .rail{display:flex;width:max-content;animation:ticker 46s linear infinite;padding:11px 0}
 .ticker:hover .rail{animation-play-state:paused}
@@ -76,7 +76,7 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.0
 @media(prefers-reduced-motion:reduce){.ticker .rail{animation:none;flex-wrap:wrap;width:auto}.ticker .item{padding:0 18px}}
 
 /* nav — slim, above the fold on black */
-header{border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;background:rgba(10,10,10,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+header{border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .nav{display:flex;justify-content:space-between;align-items:baseline;padding:18px 24px}
 .wordmark{font-family:'Fraunces',serif;font-weight:600;font-size:21px;color:var(--paper)}
 .nav nav{display:flex;gap:26px;font-size:15px}
@@ -92,9 +92,9 @@ header{border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;back
 }
 
 /* hero — asymmetric 5/7, billboard type */
-.hero{display:grid;grid-template-columns:5fr 7fr;gap:48px;padding:92px 24px 96px;align-items:center}
-.hero .eyebrow{font-size:12.5px;color:var(--mut);letter-spacing:.1em;margin-bottom:22px}
-.hero h1{font-size:clamp(38px,5.2vw,62px);margin-bottom:22px;min-height:2.2em}
+.hero{display:grid;grid-template-columns:5fr 7fr;gap:40px;padding:56px 24px 60px;align-items:center}
+.hero .eyebrow{font-size:12.5px;color:var(--mut);letter-spacing:.1em;margin-bottom:14px}
+.hero h1{font-size:clamp(38px,5.2vw,62px);margin-bottom:16px}
 .hero h1 em{font-style:italic;color:var(--accent)}
 .hero p{color:var(--mut);max-width:44ch;margin-bottom:30px}
 .btn{display:inline-block;padding:13px 22px;font-size:16px;font-weight:600;border-radius:4px;
@@ -107,11 +107,9 @@ header{border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;back
 .btn.plain:hover{border-bottom-color:var(--accent);color:var(--accent);transform:none;background:none}
 .hero figure{position:relative}
 .hero img,.hero video{width:100%;height:100%;max-height:560px;object-fit:cover;border-radius:6px;display:block;
-  border:1px solid var(--line);aspect-ratio:16/10;filter:grayscale(.15) contrast(1.04);background:#0a0a0a}
+  border:1px solid var(--line);aspect-ratio:16/10;background:#000}
 @media(max-width:820px){.hero img,.hero video{max-height:320px;aspect-ratio:16/11}}
 figure{overflow:hidden;border-radius:6px}
-.hero img,.work img,.hero video{transition:transform .5s ease}
-figure:hover img,figure:hover video{transform:scale(1.015)}
 .hero figcaption{font-size:12.5px;color:var(--mut);margin-top:10px;transition:color .3s}
 figure:hover figcaption{color:var(--paper)}
 
@@ -124,9 +122,9 @@ figure:hover figcaption{color:var(--paper)}
 @media(max-width:820px){.proof{grid-template-columns:1fr 1fr}.proof div:nth-child(2){border-right:none}.proof div:nth-child(1),.proof div:nth-child(2){border-bottom:1px solid var(--line)}}
 
 /* sections */
-section{padding:70px 0}
-section.tight{padding:48px 0}
-section.loose{padding:110px 0}
+section{padding:52px 0}
+section.tight{padding:36px 0}
+section.loose{padding:72px 0}
 h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:18px}
 .lead{color:var(--mut);max-width:52ch}
 
@@ -143,7 +141,7 @@ h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:18px}
 
 /* work */
 .work{display:grid;grid-template-columns:7fr 5fr;gap:40px;align-items:start}
-.work img{width:100%;height:100%;max-height:480px;object-fit:cover;border-radius:6px;border:1px solid var(--line);display:block;aspect-ratio:4/3;filter:grayscale(.15) contrast(1.04)}
+.work img{width:100%;height:100%;max-height:480px;object-fit:cover;border-radius:6px;border:1px solid var(--line);display:block;aspect-ratio:4/3;background:#000}
 @media(max-width:820px){.work img{max-height:300px;aspect-ratio:16/11}}
 .work .note{font-size:12.5px;color:var(--mut);margin-top:10px}
 .work .col p{color:var(--mut);font-size:15.5px}
@@ -180,7 +178,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 60px;font-size:12.5px;col
 footer a{color:var(--paper)}
 
 /* final CTA — inverted to paper on the black page */
-.final{background:var(--paper);color:var(--ink);padding:130px 0}
+.final{background:var(--paper);color:var(--ink);padding:88px 0}
 .final h2{font-size:clamp(32px,5.5vw,54px);max-width:14ch;margin-bottom:14px}
 .final p{color:#5c554c;max-width:44ch;margin-bottom:34px;font-size:17px}
 .final .btn.primary{background:var(--ink);color:var(--paper)}
