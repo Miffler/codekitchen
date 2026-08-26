@@ -72,6 +72,8 @@ a{color:var(--accent);text-decoration:none}
     <input type="hidden" name="package" id="f_pkg">
     <input type="hidden" name="retainer" id="f_retainer">
     <input type="hidden" name="domain" id="f_domain">
+    <!-- Honeypot: bots fill this, humans don't see it -->
+    <input type="text" name="website_url" tabindex="-1" autocomplete="off" style="display:none;">
 
     <!-- STEP 1: package + care add-on -->
     <div id="s1">
