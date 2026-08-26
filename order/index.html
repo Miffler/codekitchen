@@ -91,7 +91,7 @@ a{color:var(--accent);text-decoration:none}
         <span class="d">Hosting, monthly edits, analytics, priority replies. Cancel anytime.</span></label>
       <p class="sub" style="margin-top:8px">Skip it and we hand over everything so you can manage the site yourself.</p>
 
-      <div class="total">Total today: <b id="totalNow">$999</b><span id="totalSub"></span></div>
+      <div class="total">Charged today: <b id="totalNow">$0</b><span id="totalSub"></span></div>
     </div>
 
     <!-- STEP 2: domain -->
@@ -116,15 +116,13 @@ a{color:var(--accent);text-decoration:none}
       <div class="field"><label>Business name</label><input name="business" required placeholder="Tony's Pizza"></div>
       <div class="field"><label>Email</label><input type="email" name="email" required placeholder="you@email.com"></div>
       <div class="field"><label>Phone <span style="color:var(--mut);font-weight:400">(optional — we'll call to confirm)</span></label><input type="tel" name="phone" placeholder="+1 555 000 1234"></div>
-      <div class="field"><label>Stripe Payment Link(s) <span style="color:var(--mut);font-weight:400">(optional — one per line)</span></label><textarea name="payment_links" rows="3" style="width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--txt);padding:12px;font-size:14px;font-family:inherit" placeholder="https://pay.stripe.com/abc123
-https://pay.stripe.com/def456"></textarea></div>
       <div class="field"><label>Anything else? (optional)</label><textarea name="note" rows="3" style="width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--txt);padding:12px;font-size:14px;font-family:inherit" placeholder="Anything we should know"></textarea></div>
       <div class="err" id="err">Please fill in your business name and a valid email.</div>
       <div style="font-size:13px;color:var(--mut);margin-top:14px" id="summary"></div>
     </div>
 
     <button class="btn primary" type="button" id="next">Continue</button>
-    <p class="sub" style="margin-top:12px;text-align:center">No payment now — we'll talk first. Replies within a few hours.</p>
+    <p class="sub" style="margin-top:12px;text-align:center">Nothing is charged today. Your first $200 happens only after you've seen and approved your draft.</p>
     <a class="back" href="/">← Back to CodeKitchen</a>
   </form>
 </div>
@@ -140,12 +138,11 @@ function updateTotal(){
   const pkg=document.querySelector('input[name=pkg]:checked').value;
   const care=document.getElementById('careBox').checked;
   const base=pkg==='starter'?599:999;
-  const today=care?base+120:base;
-  document.getElementById('totalNow').textContent='$'+today;
+  document.getElementById('totalNow').textContent='$0';
   const t=document.querySelector('.total');t.classList.remove('flash');void t.offsetWidth;t.classList.add('flash');
   document.getElementById('totalSub').textContent=
-    care?(' = $'+base+' site + first month care, then $120/mo')
-        :(' one-time, no recurring charges');
+    ' — $200 deposit after you approve your draft, $'+(base-200)+' when the site goes live'
+    +(care?'. Care plan $120/mo starts when live.':'. Nothing recurring.');
 }
 document.querySelectorAll('input[name=pkg]').forEach(r=>r.addEventListener('change',updateTotal));
 document.getElementById('careBox').addEventListener('change',updateTotal);
@@ -155,7 +152,7 @@ let step=1;
 const steps=[s1,s2,s3];
 function show(n){step=n;steps.forEach((el,i)=>el.classList.toggle('hidden',i!==n-1));
   document.querySelector('#steps').innerHTML='Step <b>'+n+'</b> of 3';
-  document.getElementById('next').textContent=n===3?'Place order':'Continue';}
+  document.getElementById('next').textContent=n===3?'Place my order':'Continue';}
 
 document.getElementById('next').onclick=()=>{
   if(step===1){
