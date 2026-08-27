@@ -14,6 +14,9 @@
   --txt:#fff; --mut:#9a9a9a; --line:#262626; --accent:#c96a3b;
 }
 ::selection{background:var(--accent);color:#fff}
+
+/* reduced motion */
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Instrument Sans',system-ui,sans-serif;
