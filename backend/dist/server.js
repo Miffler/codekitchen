@@ -21,7 +21,7 @@ const app = Fastify({
 
 // Health check hook - runs before ANY route matching, before ANY plugins
 app.addHook('onRequest', async (request, reply) => {
-    if (request.url === '/health') {
+    if (request.url === '/health' || request.url === '/health/') {
         return reply.send({ ok: true, smtp: !!config.SMTP_PASS, stripe: isStripeConfigured(), db: true });
     }
 });
