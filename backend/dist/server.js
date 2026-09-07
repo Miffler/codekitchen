@@ -19,9 +19,11 @@ const app = Fastify({
     } : { level: 'warn' },
 });
 
-// Health check endpoint - MUST be registered IMMEDIATELY after app creation, before ANY plugins
-app.get('/health', async (request, reply) => {
-    return { ok: true, smtp: !!config.SMTP_PASS, stripe: isStripeConfigured(), db: true };
+// Health check hook - runs before ANY route matching, before ANY plugins
+app.addHook('onRequest', async (request, reply) => {
+    if (request.url === '/health') {
+        return reply.send({ ok: true, smtp: !!config.SMTP_PASS, stripe: isStripeConfigured(), db: true });
+    }
 });
 
 // CORS
