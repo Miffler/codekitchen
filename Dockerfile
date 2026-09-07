@@ -1,5 +1,8 @@
 FROM node:22-alpine
 
+ARG BUILD_DATE=2026-09-07
+ENV BUILD_DATE=$BUILD_DATE
+
 WORKDIR /app
 
 # Install build dependencies for native modules (better-sqlite3)
