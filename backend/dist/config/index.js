@@ -1,0 +1,30 @@
+import { z } from 'zod';
+const envSchema = z.object({
+    NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
+    PORT: z.coerce.number().default(8088),
+    HOST: z.string().default('0.0.0.0'),
+    DATABASE_PATH: z.string().default('/data/leads.sqlite'),
+    SMTP_HOST: z.string().default('smtp.hostinger.com'),
+    SMTP_PORT: z.coerce.number().default(465),
+    SMTP_USER: z.string().default('codekitchen@numenstack.online'),
+    SMTP_PASS: z.string(),
+    MAIL_FROM: z.string().default('codekitchen@numenstack.online'),
+    MAIL_FROM_NAME: z.string().default('Webchef'),
+    OWNER_EMAIL: z.string().default('rperpetrader@gmail.com'),
+    TG_TOKEN: z.string().default(''),
+    TG_CHAT: z.string().default(''),
+    NIGFORMANT_TG_TOKEN: z.string().default(''),
+    NIGFORMANT_TG_CHAT: z.string().default(''),
+    STRIPE_SECRET_KEY: z.string().default(''),
+    STRIPE_WEBHOOK_SECRET: z.string().default(''),
+    STRIPE_PRICE_STARTER_DEPOSIT: z.string().default(''),
+    STRIPE_PRICE_STANDARD_DEPOSIT: z.string().default(''),
+    STRIPE_PRICE_STARTER_REMAINDER: z.string().default(''),
+    STRIPE_PRICE_STANDARD_REMAINDER: z.string().default(''),
+    STRIPE_PRICE_CARE: z.string().default(''),
+    SITE_URL: z.string().default('https://codekitchen.numenstack.online'),
+    APPROVE_SECRET: z.string().default(''),
+    FRONTEND_DIST_PATH: z.string().default('../frontend/dist'),
+});
+export const config = envSchema.parse(process.env);
+//# sourceMappingURL=index.js.map

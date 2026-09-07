@@ -4,77 +4,46 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<style>@view-transition{navigation:auto}</style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Azeret+Mono:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Azeret+Mono:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/style.css">
 <title>Contact — CodeKitchen</title>
 <meta name="description" content="Get in touch with CodeKitchen. Tell us about your business and we'll reply within a few hours with a plan.">
-<style>
-:root{
-  --bg:#000; --bg2:#0d0d0d; --card:#0d0d0d; --card2:#161616;
-  --txt:#fff; --mut:#9a9a9a; --line:#262626; --accent:#c96a3b;
-}
-::selection{background:var(--accent);color:#fff}
-
-/* reduced motion */
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Instrument Sans',system-ui,sans-serif;
-  background:var(--bg);
-  color:var(--txt);line-height:1.6;overflow-x:hidden}
-a{color:var(--accent);text-decoration:none}
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;
-  padding:16px 28px;backdrop-filter:blur(12px);background:rgba(10,10,10,.85);border-bottom:1px solid var(--line)}
-.brand{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:20px;color:var(--txt);text-decoration:none}
-.nav a.cta{padding:9px 18px;border-radius:6px;font-weight:600;font-size:13px;
-  background:#fff;color:#000}
-.wrap{max-width:1000px;margin:0 auto;padding:120px 22px 80px}
-h1{font-size:clamp(30px,5vw,44px);font-weight:700;letter-spacing:-.5px;margin-bottom:12px}
-.lead{color:var(--mut);font-size:17px;max-width:560px;margin-bottom:40px}
-.cols{display:grid;grid-template-columns:1fr 1.4fr;gap:28px;align-items:start}
-.info{display:flex;flex-direction:column;gap:14px}
-.irow{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;transition:border-color .25s}
-.irow:hover{border-color:var(--accent)}
-.irow .k{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
-.irow .v{font-size:15px}
-.irow .v small{display:block;color:var(--mut);font-size:13px;margin-top:2px}
-form{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px}
-label{display:block;font-size:12px;color:var(--mut);margin:14px 0 5px}
-input,textarea,select{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;
-  color:var(--txt);padding:12px;font-size:14px;font-family:inherit}
-input,textarea,select{transition:border-color .2s}
-input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 1px 0 var(--accent)}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.btn{padding:14px 24px;border-radius:12px;font-weight:600;font-size:15px;cursor:pointer;border:none;margin-top:20px;width:100%}
-.btn.primary{background:#fff;color:#000}
-.btn.primary:hover{background:var(--accent);color:#fff}
-.err{color:#ff5d6c;font-size:12px;margin-top:8px;display:none}
-.note{font-size:12px;color:var(--mut);margin-top:12px}
-footer{text-align:center;color:var(--mut);font-size:13px;padding:40px 0;border-top:1px solid var(--line);margin-top:60px}
-@media(max-width:820px){.cols{grid-template-columns:1fr}.row2{grid-template-columns:1fr}}
-</style>
 </head>
 <body>
 <nav class="nav">
   <a class="brand" href="/">CodeKitchen</a>
-  <a class="cta" href="/contact/">Get Started</a>
+  <a class="cta" href="/order/">Start my draft</a>
 </nav>
 
-<div class="wrap">
-  <div id="sentMsg" style="display:none;background:#1d3324;border:1px solid #2e5c40;color:#8fd6a4;padding:14px 18px;border-radius:10px;margin-bottom:22px">✓ Message received — check your inbox for a confirmation. We'll be with you shortly.</div>
+<div class="wrap contact-wrap">
+  <div id="sentMsg" class="sent-banner">✓ Message received — check your inbox for a confirmation. We'll be with you shortly.</div>
   <h1>Get in touch</h1>
   <p class="lead">Tell us about your business and what you need. We reply within a few hours with a plan and a realistic quote.</p>
 
-  <div class="cols">
-    <div class="info">
-      <div class="irow"><div class="k">Email</div><div class="v"><a href="mailto:codekitchen@numenstack.online">codekitchen@numenstack.online</a><small>Click to email — goes straight to my inbox</small></div></div>
-      <div class="irow"><div class="k">Response time</div><div class="v">Usually within a few hours<small>Mon–Fri, 9am–6pm</small></div></div>
-      <div class="irow"><div class="k">What happens next</div><div class="v"><small style="margin:0">1. We read your message<br>2. We reply with questions or a plan<br>3. You get a working draft within two business days — no payment until you approve it</small></div></div>
-      <div class="irow"><div class="k">Already know what you want?</div><div class="v"><a href="/order/">Pick a package →</a><small>Starter, Standard, or Care Plan</small></div></div>
+  <div class="contact-cols">
+    <div class="info-col">
+      <div class="info-row">
+        <div class="k">Email</div>
+        <div class="v"><a href="mailto:codekitchen@numenstack.online">codekitchen@numenstack.online</a><small>Click to email — goes straight to my inbox</small></div>
+      </div>
+      <div class="info-row">
+        <div class="k">Response time</div>
+        <div class="v">Usually within a few hours<small>Mon–Fri, 9am–6pm</small></div>
+      </div>
+      <div class="info-row">
+        <div class="k">What happens next</div>
+        <div class="v"><small style="margin:0">1. We read your message<br>2. We reply with questions or a plan<br>3. You get a working draft within two business days — no payment until you approve it</small></div>
+      </div>
+      <div class="info-row">
+        <div class="k">Already know what you want?</div>
+        <div class="v"><a href="/order/">Pick a package →</a><small>Starter, Standard, or Care Plan</small></div>
+      </div>
     </div>
 
-    <form class="contact" action="https://receive.numenstack.online/lead" method="POST" novalidate>
+    <form class="contact-form" action="https://receive.numenstack.online/lead" method="POST" novalidate>
       <input type="hidden" name="source" value="contact page">
       <div class="row2">
         <div><label>Business name</label><input name="business" required placeholder="Tony's Pizza"></div>
@@ -85,27 +54,41 @@ footer{text-align:center;color:var(--mut);font-size:13px;padding:40px 0;border-t
       <select name="need">
         <option value="new site">A new website</option>
         <option value="redesign">A redesign of my current site</option>
-        
         <option value="not sure">Not sure yet — help me figure it out</option>
       </select>
       <label>Tell us about your business</label>
       <textarea name="about" rows="3" required placeholder="Pizza restaurant in Springfield, currently no website, get most customers from walk-ins and Instagram"></textarea>
       <label>Anything else? (optional)</label>
       <textarea name="note" rows="2" placeholder="I have photos / a logo / a domain already"></textarea>
-      <button class="btn primary" type="submit">Send it — I reply fast</button>
+      <button class="btn btn-primary" type="submit" style="width:100%">Send it — I reply fast</button>
       <div class="err">Please fill in business name, email, and a short description.</div>
       <div class="note">This goes straight to our inbox. No newsletter, no spam. We reply within a few hours — usually faster.</div>
     </form>
   </div>
 </div>
 
-<footer>CodeKitchen — websites for small businesses</footer>
+<footer>
+  <div class="wrap fgrid">
+    <div class="col">
+      <b style="color:var(--paper)">CodeKitchen</b><br>
+      Website Builder Agent.<br>
+      Questions? <a href="/contact/">The contact form</a> reaches me directly — I reply within a few hours, usually faster.
+    </div>
+    <div class="col">
+      Set in Inter & Azeret Mono.<br>
+      Hand-built HTML, no site builder.<br>
+      Last updated September 2026
+    </div>
+  </div>
+</footer>
 
 <script>
 const form=document.querySelector('form.contact');
-if(new URLSearchParams(location.search).get('sent')){document.getElementById('sentMsg').style.display='block';}
-form.addEventListener('submit',e=>{const ok=form.business.value&&/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email.value)&&form.about.value;
-  if(!ok){e.preventDefault();form.querySelector('.err').style.display='block';}else{form.querySelector('.err').style.display='none';}});
+if(new URLSearchParams(location.search).get('sent')){document.getElementById('sentMsg').classList.add('show');}
+form.addEventListener('submit',e=>{
+  const ok=form.business.value&&/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email.value)&&form.about.value;
+  if(!ok){e.preventDefault();form.querySelector('.err').style.display='block';}else{form.querySelector('.err').style.display='none';}
+});
 </script>
 </body>
 </html>

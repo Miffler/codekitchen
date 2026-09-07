@@ -1,10 +1,11 @@
 {
   "build": {
-    "builder": "nixpacks"
+    "builder": "dockerfile",
+    "dockerfilePath": "Dockerfile"
   },
   "deploy": {
-    "startCommand": "npx --yes serve -l $PORT .",
-    "healthcheckPath": "/",
+    "healthcheckPath": "/health",
+    "healthcheckTimeout": 100,
     "restartPolicyType": "on_failure",
     "restartPolicyMaxRetries": 3
   }

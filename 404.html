@@ -5,62 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Azeret+Mono:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Azeret+Mono:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/style.css">
 <title>Page not found — CodeKitchen</title>
-<style>
-:root{
-  --ink:#000000; --paper:#ffffff; --mut:#9a9a9a; --line:#262626;
-  --accent:#c96a3b;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{background:var(--ink);scroll-behavior:smooth}
-[id]{scroll-margin-top:96px}
-body{font-family:'Instrument Sans',sans-serif;text-wrap:pretty;background:var(--ink);color:var(--paper);
-  line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px}
-a{color:var(--paper);text-decoration:none;text-underline-offset:3px;
-  background-image:linear-gradient(currentColor,currentColor);
-  background-size:0% 1px;background-repeat:no-repeat;background-position:left bottom;
-  transition:background-size .25s ease}
-a:hover,a:focus-visible{background-size:100% 1px}
-h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.02em;line-height:1.1;text-wrap:balance}
-.wrap{max-width:1060px;margin:0 auto;padding:0 24px}
-.skip{position:absolute;left:-9999px}
-.skip:focus{left:24px;top:24px;background:var(--paper);color:var(--ink);padding:10px 16px;z-index:99}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-
-/* nav — slim, above the fold on black */
-header{border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.nav{display:flex;justify-content:space-between;align-items:baseline;padding:18px 24px}
-.wordmark{font-family:'Fraunces',serif;font-weight:600;font-size:21px;color:var(--paper)}
-.nav nav{display:flex;gap:26px;font-size:15px}
-.nav a{color:var(--paper)}
-.nav a:hover,.nav a:focus-visible{background-size:100% 1px}
-@media(max-width:600px){
-  .wordmark{font-size:19px}
-  .nav nav{gap:12px;font-size:13.5px}
-}
-
-.hero-404{text-align:center;padding:60px 0}
-.hero-404 .code{font-family:'Fraunces',serif;font-size:clamp(80px,15vw,180px);font-weight:600;color:var(--accent);line-height:1;margin-bottom:8px}
-.hero-404 h1{font-size:clamp(28px,4vw,42px);margin-bottom:16px}
-.hero-404 p{color:var(--mut);max-width:40ch;margin:0 auto 32px}
-.btn{display:inline-block;padding:13px 22px;font-size:16px;font-weight:600;border-radius:4px;
-  text-decoration:none;transition:transform .15s,background-color .2s}
-.btn:hover{transform:translateY(-1px)}
-.btn:active{transform:scale(.96) translateY(0)}
-.btn.primary{background:var(--paper);color:var(--ink)}
-.btn.primary:hover{background:var(--accent);color:#fff}
-.btn.plain{color:var(--paper);border-bottom:1px solid var(--paper);border-radius:0;padding:13px 0}
-.btn.plain:hover{border-bottom-color:var(--accent);color:var(--accent);transform:none;background:none}
-
-footer{border-top:1px solid var(--line);padding:44px 0 60px;font-size:12.5px;color:var(--mut);width:100%}
-.fgrid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;max-width:1060px;margin:0 auto;padding:0 24px}
-.fgrid .col{max-width:40ch}
-footer a{color:var(--paper)}
-
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-::selection{background:var(--accent);color:#fff}
-</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -68,7 +18,7 @@ footer a{color:var(--paper)}
 <header>
   <div class="wrap nav">
     <a class="wordmark" href="/">CodeKitchen</a>
-    <nav aria-label="Main">
+    <nav class="nav-links" aria-label="Main">
       <a href="/#process">How it works</a>
       <a href="/#pricing">Pricing</a>
       <a href="/contact/">Contact</a>
@@ -81,9 +31,9 @@ footer a{color:var(--paper)}
     <div class="code">404</div>
     <h1>Page not found</h1>
     <p>The page you're looking for doesn't exist or has been moved.</p>
-    <div style="display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:8px">
-      <a class="btn primary" href="/">Back to home</a>
-      <a class="btn plain" href="/contact/">Get in touch</a>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/">Back to home</a>
+      <a class="btn btn-frosted" href="/contact/">Get in touch</a>
     </div>
   </div>
 </main>
@@ -92,13 +42,13 @@ footer a{color:var(--paper)}
   <div class="wrap fgrid">
     <div class="col">
       <b style="color:var(--paper)">CodeKitchen</b><br>
-      Websites for small businesses.<br>
+      Website Builder Agent.<br>
       Questions? <a href="/contact/">The contact form</a> reaches me directly — I reply within a few hours, usually faster.
     </div>
     <div class="col">
-      Set in Fraunces & Instrument Sans.<br>
+      Set in Inter & Azeret Mono.<br>
       Hand-built HTML, no site builder.<br>
-      Last updated August 2026
+      Last updated September 2026
     </div>
   </div>
 </footer>
