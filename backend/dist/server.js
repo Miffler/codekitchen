@@ -39,10 +39,6 @@ await app.register(staticPlugin, {
         }
     },
 });
-// Health check endpoint
-app.get('/health', async (request, reply) => {
-    return { ok: true, smtp: !!config.SMTP_PASS, stripe: isStripeConfigured(), db: true };
-});
 
 // Use process.cwd() for reliable path resolution in ES modules
 const BASE_DIR = process.cwd();
@@ -73,6 +69,12 @@ async function serveStatic(reply, filePath, contentType) {
     }
 }
 
+// Health check endpoint - MUST be first explicit route
+app.get('/health', async (request, reply) => {
+    return { ok: true, smtp: !!config.SMTP_PASS, stripe: isStripeConfigured(), db: true };
+});
+
+// Explicit routes for all pages - registered BEFORE wildcard fallback
 app.get('/', async (request, reply) => {
     return serveHtml(reply, 'index.html');
 });
@@ -100,9 +102,13 @@ app.get('/favicon.svg', async (request, reply) => {
 app.get('/icons.svg', async (request, reply) => {
     return serveStatic(reply, 'icons.svg', 'image/svg+xml');
 });
-// Fallback for any other non-API routes -> index.html (SPA fallback)
-app.get('/*', async (request, reply) => {
-    if (request.url.startsWith('/api/') || request.url.startsWith('/assets/')) {
+
+// SPA fallback - ONLY matches non-API, non-asset paths WITHOUT file extensions
+// This avoids catching /health, /favicon.svg, /icons.svg, etc.
+app.get('/:path*', async (request, reply) => {
+    const url = request.url;
+    // Skip API, assets, health, and files with extensions
+    if (url.startsWith('/api/') || url.startsWith('/assets/') || url.startsWith('/health') || url.includes('.') || url === '/') {
         return reply.status(404).send({ error: 'Not found' });
     }
     return serveHtml(reply, 'index.html');
