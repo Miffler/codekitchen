@@ -23,6 +23,10 @@ await app.register(cors, {
     origin: true,
     credentials: true,
 });
+// Health check endpoint - MUST be registered FIRST before any plugins
+app.get('/health', async (request, reply) => {
+    return { ok: true, smtp: !!config.SMTP_PASS, stripe: isStripeConfigured(), db: true };
+});
 // Rate limiting
 await app.register(rateLimit, {
     max: 60,
@@ -68,11 +72,6 @@ async function serveStatic(reply, filePath, contentType) {
         return reply.status(404).send('Not found');
     }
 }
-
-// Health check endpoint - MUST be first explicit route
-app.get('/health', async (request, reply) => {
-    return { ok: true, smtp: !!config.SMTP_PASS, stripe: isStripeConfigured(), db: true };
-});
 
 // Explicit routes for all pages - registered BEFORE wildcard fallback
 app.get('/', async (request, reply) => {
