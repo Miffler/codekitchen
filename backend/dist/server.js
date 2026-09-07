@@ -19,7 +19,7 @@ const app = Fastify({
     } : { level: 'warn' },
 });
 
-// Health check endpoint - registered IMMEDIATELY after app creation, before ANY plugins
+// Health check endpoint - MUST be registered IMMEDIATELY after app creation, before ANY plugins
 app.get('/health', async (request, reply) => {
     return { ok: true, smtp: !!config.SMTP_PASS, stripe: isStripeConfigured(), db: true };
 });
