@@ -18,14 +18,16 @@ const app = Fastify({
         },
     } : { level: 'warn' },
 });
+
+// Health check endpoint - registered IMMEDIATELY after app creation, before ANY plugins
+app.get('/health', async (request, reply) => {
+    return { ok: true, smtp: !!config.SMTP_PASS, stripe: isStripeConfigured(), db: true };
+});
+
 // CORS
 await app.register(cors, {
     origin: true,
     credentials: true,
-});
-// Health check endpoint - MUST be registered FIRST before any plugins
-app.get('/health', async (request, reply) => {
-    return { ok: true, smtp: !!config.SMTP_PASS, stripe: isStripeConfigured(), db: true };
 });
 // Rate limiting
 await app.register(rateLimit, {
