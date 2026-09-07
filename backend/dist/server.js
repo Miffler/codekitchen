@@ -19,11 +19,15 @@ const app = Fastify({
     } : { level: 'warn' },
 });
 
-// Health check hook - runs before ANY route matching, before ANY plugins
-app.addHook('onRequest', async (request, reply) => {
-    if (request.url.startsWith('/health')) {
-        return reply.send({ ok: true, smtp: !!config.SMTP_PASS, stripe: isStripeConfigured(), db: true });
-    }
+// Health check endpoints - registered IMMEDIATELY after app creation, before ANY plugins
+app.get('/health', async (request, reply) => {
+    return { ok: true, smtp: !!config.SMTP_PASS, stripe: isStripeConfigured(), db: true };
+});
+app.get('/health/', async (request, reply) => {
+    return { ok: true, smtp: !!config.SMTP_PASS, stripe: isStripeConfigured(), db: true };
+});
+app.get('/api/health', async (request, reply) => {
+    return { ok: true, smtp: !!config.SMTP_PASS, stripe: isStripeConfigured(), db: true };
 });
 
 // CORS
@@ -118,11 +122,6 @@ app.get('/:path*', async (request, reply) => {
 });
 // API routes
 await app.register(leadRoutes, { prefix: '/api' });
-
-// Health check endpoint for API
-app.get('/api/health', async (request, reply) => {
-    return { ok: true, smtp: !!config.SMTP_PASS, stripe: isStripeConfigured(), db: true };
-});
 
 // Start server
 async function start() {
