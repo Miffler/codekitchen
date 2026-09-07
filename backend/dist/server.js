@@ -110,7 +110,7 @@ app.get('/icons.svg', async (request, reply) => {
 // This avoids catching /health, /favicon.svg, /icons.svg, etc.
 app.get('/:path*', async (request, reply) => {
     const url = request.url;
-    // Skip API, assets, health, and files with extensions
+    // Skip API, assets, health (with or without trailing slash), and files with extensions
     if (url.startsWith('/api/') || url.startsWith('/assets/') || url.startsWith('/health') || url.includes('.') || url === '/') {
         return reply.status(404).send({ error: 'Not found' });
     }
