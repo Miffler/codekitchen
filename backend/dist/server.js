@@ -119,6 +119,11 @@ app.get('/:path*', async (request, reply) => {
 // API routes
 await app.register(leadRoutes, { prefix: '/api' });
 
+// Health check endpoint for API
+app.get('/api/health', async (request, reply) => {
+    return { ok: true, smtp: !!config.SMTP_PASS, stripe: isStripeConfigured(), db: true };
+});
+
 // Start server
 async function start() {
     try {
