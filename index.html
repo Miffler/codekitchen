@@ -35,43 +35,87 @@
     </nav>
 
     <main>
-      <!-- Hero -->
-      <section class="hero">
-        <h1>Website Builder Agent</h1>
-        <p class="sub">We don't build websites. We run an agent that researches, generates media, builds, and verifies. Honest sites for small businesses.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="/order/">$0 today — Start my draft</a>
-          <a class="btn btn-frosted" href="/contact/">Talk to the chef</a>
+      <!-- Hero with Video Background -->
+      <section class="hero" id="hero">
+        <video class="hero-video" autoplay muted loop playsinline poster="/media/hero-still.png" preload="metadata">
+          <source src="/media/hero-1080.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="hero-badge">Website Builder Agent</p>
+          <h1>We don't build websites.<br>We run an agent that does.</h1>
+          <p class="hero-sub">Researches your market. Generates custom media. Writes clean code. Runs QA. Deploys live. Two business days. $0 until you approve.</p>
+          <div class="hero-cta-row">
+            <a class="btn btn-primary" href="/order/">$0 today — Start my draft</a>
+            <a class="btn btn-frosted" href="/contact/">Talk to the chef</a>
+          </div>
+          <p class="hero-note">No payment until you approve the draft. Two business days. Deployed live.</p>
         </div>
-        <p style="font-size:13px;color:var(--muted);font-family:'Azeret Mono',monospace">No payment until you approve the draft. Two business days. Deployed live.</p>
+        <div class="hero-scroll-hint" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+      </section>
+
+      <!-- Trust Bar -->
+      <section class="trust-bar" aria-label="Trust indicators">
+        <div class="wrap">
+          <div class="trust-items">
+            <div class="trust-item">
+              <span class="trust-icon" aria-hidden="true">⚡</span>
+              <span>Live draft in 48h</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon" aria-hidden="true">🎨</span>
+              <span>Custom AI media</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon" aria-hidden="true">🔒</span>
+              <span>Your domain, your code</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon" aria-hidden="true">🛡️</span>
+              <span>30 days hosting included</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- Process -->
       <section class="section" id="process">
         <div class="wrap">
-          <h2>How it works</h2>
-          <p class="lead">Two business days from order to working draft. You approve, we deploy. No surprises.</p>
+          <header class="section-header">
+            <h2>How it works</h2>
+            <p class="lead">Two business days from order to working draft. You approve, we deploy. No surprises.</p>
+          </header>
           <div class="steps-grid">
-            <div class="step-card">
-              <div class="num">01 — Order</div>
-              <h3>Pick a package</h3>
-              <p>Starter ($599) or Standard ($999). Add Care Plan ($120/mo) if you want hosting & edits handled. Domain help included.</p>
-            </div>
-            <div class="step-card">
-              <div class="num">02 — Draft</div>
-              <h3>We build the draft</h3>
-              <p>Agent researches your market, generates custom media (Higgsfield), writes code, runs QA. You get a live draft link in 2 business days.</p>
-            </div>
-            <div class="step-card">
-              <div class="num">03 — Approve</div>
-              <h3>Review & approve</h3>
-              <p>If it's good, pay the $200 deposit. We build the final version and deploy. Remainder due at handoff. If not, we iterate.</p>
-            </div>
-            <div class="step-card">
-              <div class="num">04 — Live</div>
-              <h3>Site goes live</h3>
-              <p>On your domain. Clean HTML, no page builders. 30 days hosting included. Then: care plan or self-host (zip + instructions). Code is yours forever.</p>
-            </div>
+            <article class="step-card" data-step="1">
+              <div class="step-num">01</div>
+              <div class="step-icon" aria-hidden="true">📋</div>
+              <h3>Order</h3>
+              <p>Pick Starter ($599) or Standard ($999). Add Care Plan ($120/mo) for hosting & edits. Domain help included.</p>
+              <a class="step-link" href="/order/?pkg=starter">Start order →</a>
+            </article>
+            <article class="step-card" data-step="2">
+              <div class="step-num">02</div>
+              <div class="step-icon" aria-hidden="true">🤖</div>
+              <h3>Draft</h3>
+              <p>Agent researches your market, generates custom media via Higgsfield AI, writes vanilla HTML/CSS/JS, runs headless QA.</p>
+              <a class="step-link" href="#process">See process →</a>
+            </article>
+            <article class="step-card" data-step="3">
+              <div class="step-num">03</div>
+              <div class="step-icon" aria-hidden="true">✅</div>
+              <h3>Approve</h3>
+              <p>Review the live draft. If it's good, pay $200 deposit. We build final and deploy. Remainder due at handoff. If not, we iterate.</p>
+              <a class="step-link" href="/contact/">Questions? →</a>
+            </article>
+            <article class="step-card" data-step="4">
+              <div class="step-num">04</div>
+              <div class="step-icon" aria-hidden="true">🚀</div>
+              <h3>Live</h3>
+              <p>On your domain. Clean HTML, no builders. 30 days hosting included. Then: care plan or self-host (zip + instructions). Code is yours forever.</p>
+              <a class="step-link" href="#pricing">View pricing →</a>
+            </article>
           </div>
         </div>
       </section>
@@ -79,87 +123,94 @@
       <!-- Pricing -->
       <section class="section" id="pricing">
         <div class="wrap">
-          <h2>Pricing</h2>
-          <p class="lead">Simple. No hidden fees. First $0 — you only pay after the draft is approved.</p>
+          <header class="section-header">
+            <h2>Pricing</h2>
+            <p class="lead">Simple. No hidden fees. First $0 — you only pay after the draft is approved.</p>
+          </header>
           <div class="pricing-grid">
-            <div class="price-card">
-              <div class="badge">Starter</div>
-              <div class="name">One-page site</div>
-              <div class="price">$599<span> total</span></div>
-              <p class="desc">Hero, about/services, contact form, one payment link connection, deployed live.</p>
-              <ul>
-                <li class="ok">Research & strategy</li>
-                <li class="ok">Custom hero media (Higgsfield)</li>
-                <li class="ok">Contact form + formspree</li>
-                <li class="ok">1 payment link (Stripe/other)</li>
-                <li class="ok">Deployed on your domain</li>
-                <li class="ok">30 days hosting included</li>
+            <article class="price-card">
+              <div class="price-badge">Starter</div>
+              <div class="price-name">One-page site</div>
+              <div class="price-amount">$599<span> total</span></div>
+              <p class="price-desc">Hero, about/services, contact form, one payment link connection, deployed live.</p>
+              <ul class="price-features">
+                <li><span class="check" aria-hidden="true">✓</span> Research & strategy</li>
+                <li><span class="check" aria-hidden="true">✓</span> Custom hero media (Higgsfield)</li>
+                <li><span class="check" aria-hidden="true">✓</span> Contact form + Formspree</li>
+                <li><span class="check" aria-hidden="true">✓</span> 1 payment link (Stripe/other)</li>
+                <li><span class="check" aria-hidden="true">✓</span> Deployed on your domain</li>
+                <li><span class="check" aria-hidden="true">✓</span> 30 days hosting included</li>
                 <li>Responsive, fast, accessible</li>
                 <li>Source code handoff (zip)</li>
               </ul>
               <a class="btn btn-primary" href="/order/?pkg=starter">Start my draft — $0 today</a>
-            </div>
-            <div class="price-card featured">
-              <div class="badge">Standard <span style="color:var(--rust);margin-left:6px">Popular</span></div>
-              <div class="name">Multi-section site</div>
-              <div class="price">$999<span> total</span></div>
-              <p class="desc">Up to 5 sections, video + motion, testimonials + pricing, unlimited payment links.</p>
-              <ul>
-                <li class="ok">Everything in Starter</li>
-                <li class="ok">Up to 5 content sections</li>
-                <li class="ok">Video/motion backgrounds</li>
-                <li class="ok">Testimonials & pricing tables</li>
-                <li class="ok">Unlimited payment links</li>
-                <li class="ok">Blog/feed integration</li>
-                <li class="ok">30 days hosting included</li>
+            </article>
+            <article class="price-card featured">
+              <div class="price-badge featured-badge">Standard <span class="popular-tag">Popular</span></div>
+              <div class="price-name">Multi-section site</div>
+              <div class="price-amount">$999<span> total</span></div>
+              <p class="price-desc">Up to 5 sections, video + motion, testimonials + pricing, unlimited payment links.</p>
+              <ul class="price-features">
+                <li><span class="check" aria-hidden="true">✓</span> Everything in Starter</li>
+                <li><span class="check" aria-hidden="true">✓</span> Up to 5 content sections</li>
+                <li><span class="check" aria-hidden="true">✓</span> Video/motion backgrounds</li>
+                <li><span class="check" aria-hidden="true">✓</span> Testimonials & pricing tables</li>
+                <li><span class="check" aria-hidden="true">✓</span> Unlimited payment links</li>
+                <li><span class="check" aria-hidden="true">✓</span> Blog/feed integration</li>
+                <li><span class="check" aria-hidden="true">✓</span> 30 days hosting included</li>
                 <li>Source code handoff (zip)</li>
               </ul>
               <a class="btn btn-primary" href="/order/?pkg=standard">Start my draft — $0 today</a>
-            </div>
+            </article>
           </div>
-          <p style="text-align:center;color:var(--muted);font-size:13px;margin-top:16px">Care Plan: +$120/mo — hosting, monthly edits, analytics, priority replies. Cancel anytime.</p>
+          <p class="price-note">Care Plan: +$120/mo — hosting, monthly edits, analytics, priority replies. Cancel anytime.</p>
         </div>
       </section>
 
       <!-- FAQ -->
-      <section class="section">
+      <section class="section" id="faq">
         <div class="wrap">
-          <h2>Questions</h2>
+          <header class="section-header">
+            <h2>Questions</h2>
+            <p class="lead">Straight answers. No corporate speak.</p>
+          </header>
           <div class="faq">
-            <div class="faq-item">
-              <div class="faq-q">What does "Website Builder Agent" mean?</div>
+            <details class="faq-item">
+              <summary class="faq-q">What does "Website Builder Agent" mean?</summary>
               <div class="faq-a">I run a system (Miffler/Hermes) that does the work: researches your market, generates custom images/video via Higgsfield AI, writes clean HTML/CSS/JS, runs headless QA, and deploys. I steer it. You get a site, not a template.</div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-q">Why $0 today?</div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-q">Why $0 today?</summary>
               <div class="faq-a">You don't pay until you've seen a working draft and approved it. If you don't like it, you walk away — no charge. The $200 deposit only happens after you say "yes, build it."</div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-q">What if I don't have a domain?</div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-q">What if I don't have a domain?</summary>
               <div class="faq-a">We'll help you pick and register one (~$12/yr, in your name). You own it. If you already have one, we'll point it at the new site.</div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-q">What happens after 30 days?</div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-q">What happens after 30 days?</summary>
               <div class="faq-a">If you have the Care Plan, nothing changes — I keep hosting and maintaining. If not, you get a zip of your site + step-by-step instructions for Cloudflare Pages (free). Your domain stays in your name. Code is yours forever.</div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-q">Can I see examples?</div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-q">Can I see examples?</summary>
               <div class="faq-a">Every site is custom — no portfolio of "templates" to browse. The agent builds fresh each time. If you want to see the quality bar, <a href="/contact/">get in touch</a> and I'll share a recent build privately.</div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-q">What stack do you use?</div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-q">What stack do you use?</summary>
               <div class="faq-a">Vanilla HTML/CSS/JS. No React, no WordPress, no builders. Fast, secure, zero dependencies. Deployed on Railway + Cloudflare. You can host anywhere.</div>
-            </div>
+            </details>
           </div>
         </div>
       </section>
 
-      <!-- CTA -->
-      <section class="cta-section">
+      <!-- Final CTA -->
+      <section class="cta-section final-cta" id="final-cta">
         <div class="wrap">
-          <h2>Ready for a site that works?</h2>
-          <p class="sub">Pick a package, tell me about your business. Draft in two business days. No payment until you approve.</p>
-          <a class="btn btn-primary" href="/order/" style="display:inline-block;width:auto">Start my draft — $0 today</a>
+          <div class="final-cta-content">
+            <h2>Ready for a site that works?</h2>
+            <p class="sub">Pick a package, tell me about your business. Draft in two business days. No payment until you approve.</p>
+            <a class="btn btn-primary btn-lg" href="/order/">Start my draft — $0 today</a>
+          </div>
         </div>
       </section>
     </main>
@@ -178,5 +229,104 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      // IntersectionObserver for scroll animations
+      (function() {
+        'use strict';
+
+        // Respect reduced motion
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) return;
+
+        // Step cards stagger animation
+        const stepCards = document.querySelectorAll('.step-card');
+        const priceCards = document.querySelectorAll('.price-card');
+        const faqItems = document.querySelectorAll('.faq-item');
+        const trustItems = document.querySelectorAll('.trust-item');
+        const finalCta = document.querySelector('.final-cta');
+
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px 0px -10% 0px',
+          threshold: 0.1
+        };
+
+        const animateIn = (entries, observer) => {
+          entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.classList.add('in-view');
+              }, i * 80);
+              observer.unobserve(entry.target);
+            }
+          });
+        };
+
+        const observer = new IntersectionObserver(animateIn, observerOptions);
+
+        [...stepCards, ...priceCards, ...faqItems, ...trustItems].forEach(el => observer.observe(el));
+        if (finalCta) observer.observe(finalCta);
+
+        // Hero video fallback - pause if not visible
+        const heroVideo = document.querySelector('.hero-video');
+        if (heroVideo) {
+          const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                heroVideo.play().catch(() => {});
+              } else {
+                heroVideo.pause();
+              }
+            });
+          }, { threshold: 0.5 });
+          videoObserver.observe(heroVideo);
+        }
+
+        // Subtle parallax on hero content
+        let ticking = false;
+        const heroContent = document.querySelector('.hero-content');
+        if (heroContent && !prefersReduced) {
+          window.addEventListener('scroll', () => {
+            if (!ticking) {
+              requestAnimationFrame(() => {
+                const scrollY = window.scrollY;
+                const heroHeight = document.querySelector('.hero').offsetHeight;
+                if (scrollY < heroHeight) {
+                  const translateY = scrollY * 0.3;
+                  heroContent.style.transform = `translateY(${translateY}px)`;
+                  heroContent.style.opacity = 1 - scrollY / heroHeight;
+                }
+                ticking = false;
+              });
+              ticking = true;
+            }
+          }, { passive: true });
+        }
+
+        // Nav backdrop opacity on scroll
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+          } else {
+            nav.classList.remove('scrolled');
+          }
+        }, { passive: true });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            const target = document.querySelector(targetId);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
