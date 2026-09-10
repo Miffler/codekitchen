@@ -300,12 +300,6 @@ export async function leadRoutes(app) {
         sendDraftApproval({ ...lead, draft_url }, draft_url).catch(console.error);
         return reply.send({ ok: true, order_id, draft_url });
     });
-    app.get('/health', async () => ({
-        ok: true,
-        smtp: !!config.SMTP_PASS,
-        stripe: isStripeConfigured(),
-        db: true,
-    }));
     app.get('/ledger', async (request, reply) => {
         const key = request.query.key;
         if (key !== config.APPROVE_SECRET) {
